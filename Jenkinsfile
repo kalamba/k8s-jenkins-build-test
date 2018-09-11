@@ -50,7 +50,7 @@ spec:
         stage ('Docker') {
             container ('docker') {
                 def registryIp = 'dockerreg.elama.ru'
-                repository = "${registryIp}"
+                repository = "${registryIp}/hello"
                 sh "docker build -t ${repository}:${commitId} ."
                 sh "docker push ${repository}:${commitId}"
             }
