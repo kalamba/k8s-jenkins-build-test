@@ -1,0 +1,26 @@
+Master:
+  ImageTag: lts-alpine
+  ServiceType: NodePort
+  InstallPlugins:
+    - kubernetes:1.2
+    - workflow-aggregator:2.5
+    - workflow-job:2.21
+    - credentials-binding:1.15
+    - git:3.7.0
+  JavaOpts: "-Dhudson.slaves.NodeProvisioner.initialDelay=0 -Dhudson.slaves.NodeProvisioner.MARGIN=50 -Dhudson.slaves.NodeProvisioner.MARGIN0=0.85"
+
+  Ingress:
+    ApiVersion: extensions/v1beta1
+    Annotations:
+      kubernetes.io/ingress.class: internal-ingress
+      nginx.ingress.kubernetes.io/ssl-redirect: "false"
+      nginx.ingress.kubernetes.io/proxy-body-size: 50m
+      nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+      ingress.kubernetes.io/ssl-redirect: "false"
+      ingress.kubernetes.io/proxy-body-size: 50m
+      ingress.kubernetes.io/proxy-request-buffering: "off"
+  HostName: jenkins.k8s.elama.zone
+
+rbac:
+  install: true
+  serviceAccountName: jenkins
