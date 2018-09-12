@@ -19,7 +19,7 @@ podTemplate(label: 'mypod',
             command: 'cat'
         ),
         containerTemplate(
-            name: 'kube-registry-proxy', 
+            name: 'dockerreg.elama.ru', 
             image: 'gcr.io/google_containers/kube-registry-proxy:0.4',
             ttyEnabled: true,
             envVars: [
