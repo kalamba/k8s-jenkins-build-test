@@ -34,16 +34,7 @@ podTemplate(label: 'mypod',
             hostPath: '/var/run/docker.sock',
             mountPath: '/var/run/docker.sock'
         )
-    ],
-    yaml: """
-        apiVersion: v1
-        kind: Pod
-        spec:
-          hostAliases:
-          - ip: "127.0.0.1"
-            hostnames:
-            - "dockerreg.elama.ru"
-        """
+    ]
 ) {
     node('mypod') {
         def commitId
