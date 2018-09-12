@@ -6,7 +6,7 @@ podTemplate(label: 'mypod', yaml: """
       - ip: "127.0.0.1"
         hostnames:
         - "dockerreg.elama.ru"
-    """)
+    """),
 
     containers: [
         containerTemplate(
