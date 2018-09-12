@@ -35,7 +35,7 @@ spec:
                 envVar(key: 'REGISTRY_HOST', value: 'kube-registry.cloud.svc.cluster.local'),
                 envVar(key: 'REGISTRY_PORT', value: '5000')
             ],
-            ports: [portMapping(name: 'registry', containerPort: 80, hostPort: 80)],
+            ports: [portMapping(name: 'registry')],
         )
     ],
     volumes: [
