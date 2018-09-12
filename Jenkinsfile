@@ -19,7 +19,7 @@ podTemplate(label: 'mypod',
             command: 'cat'
         ),
         containerTemplate(
-            name: 'dockerreg.elama.ru', 
+            name: 'kube-registry-proxy', 
             image: 'gcr.io/google_containers/kube-registry-proxy:0.4',
             ttyEnabled: true,
             envVars: [
@@ -59,7 +59,7 @@ podTemplate(label: 'mypod',
         def repository
         stage ('Docker') {
             container ('docker') {
-                def registryIp = 'dockerreg.elama.ru'
+                def registryIp = 'kube-registry-proxy'
                 repository = "${registryIp}/hello"
                 sh "ping -c 1 dockerreg.elama.ru"
                 sh "docker build -t ${repository}:${commitId} ."
