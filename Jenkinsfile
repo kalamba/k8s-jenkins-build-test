@@ -1,5 +1,4 @@
-podTemplate(label: 'mypod', spec: [hostAliases(ip: '127.0.0.1', hostnames: 'dockerreg.elama.ru')],
-
+podTemplate(label: 'mypod',
     containers: [
         containerTemplate(
             name: 'golang', 
@@ -35,7 +34,16 @@ podTemplate(label: 'mypod', spec: [hostAliases(ip: '127.0.0.1', hostnames: 'dock
             hostPath: '/var/run/docker.sock',
             mountPath: '/var/run/docker.sock'
         )
-    ]
+    ],
+    yaml: """
+        apiVersion: v1
+        kind: Pod
+        spec:
+          hostAliases:
+          - ip: "127.0.0.1"
+            hostnames:
+            - "dockerreg.elama.ru"
+        """
 ) {
     node('mypod') {
         def commitId
