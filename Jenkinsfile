@@ -36,7 +36,6 @@ spec:
                 envVar(key: 'REGISTRY_PORT', value: '5000')
             ],
             ports: [portMapping(name: 'registry', containerPort: 80, hostPort: 80)],
-            hostNetwork: true
         )
     ],
     volumes: [
