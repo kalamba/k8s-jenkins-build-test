@@ -1,12 +1,4 @@
-podTemplate(label: 'mypod', yaml: """
-    apiVersion: v1
-    kind: Pod
-    spec:
-      hostAliases:
-      - ip: "127.0.0.1"
-        hostnames:
-        - "dockerreg.elama.ru"
-    """),
+podTemplate(label: 'mypod', spec: [hostAliases(ip: '127.0.0.1', hostnames: 'dockerreg.elama.ru')],
 
     containers: [
         containerTemplate(
