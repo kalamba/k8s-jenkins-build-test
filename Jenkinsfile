@@ -31,7 +31,6 @@ spec:
             name: 'kube-registry-proxy', 
             image: 'gcr.io/google_containers/kube-registry-proxy:0.4',
             ttyEnabled: true,
-            command: 'cat'
             envVars: [
                 envVar(key: 'REGISTRY_HOST', value: 'kube-registry.cloud.svc.cluster.local'),
                 envVar(key: 'REGISTRY_PORT', value: '5000')
