@@ -59,8 +59,8 @@ podTemplate(label: 'mypod',
         def repository
         stage ('Docker') {
             container ('docker') {
-                def registryIp = 'kube-registry-proxy'
-                repository = "${registryIp}/hello"
+                def registryIp = 'localhost'
+                repository = "${registryIp}:80/hello"
                 sh "docker build -t ${repository}:${commitId} ."
                 sh "docker push ${repository}:${commitId}"
             }
