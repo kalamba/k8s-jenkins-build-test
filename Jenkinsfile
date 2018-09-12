@@ -17,16 +17,6 @@ podTemplate(label: 'mypod',
             image: 'ibmcom/k8s-helm:v2.6.0',
             ttyEnabled: true,
             command: 'cat'
-        ),
-        containerTemplate(
-            name: 'kube-registry-proxy', 
-            image: 'gcr.io/google_containers/kube-registry-proxy:0.4',
-            ttyEnabled: true,
-            envVars: [
-                envVar(key: 'REGISTRY_HOST', value: 'kube-registry.cloud.svc.cluster.local'),
-                envVar(key: 'REGISTRY_PORT', value: '5000')
-            ],
-            ports: [portMapping(name: 'registry', containerPort: 80)],
         )
     ],
     volumes: [
