@@ -61,6 +61,7 @@ spec:
             container ('docker') {
                 def registryIp = 'dockerreg.elama.ru'
                 repository = "${registryIp}/hello"
+                sh "ping -c 1 dockerreg.elama.ru"
                 sh "docker build -t ${repository}:${commitId} ."
                 sh "docker push ${repository}:${commitId}"
             }
