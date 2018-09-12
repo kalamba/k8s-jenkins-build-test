@@ -1,7 +1,3 @@
-# Jenkins/Kube/Helm demo for Index 2018
-
-The accompanying presentation can be found on [SlideShare](https://www.slideshare.net/davidcurrie/continuous-delivery-to-kubernetes-with-jenkins-and-helm).
-
 ## Pre-reqs
 
 ```bash
