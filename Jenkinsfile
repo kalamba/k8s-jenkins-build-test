@@ -61,7 +61,6 @@ podTemplate(label: 'mypod',
             container ('docker') {
                 def registryIp = 'kube-registry-proxy'
                 repository = "${registryIp}/hello"
-                sh "ping -c 1 dockerreg.elama.ru"
                 sh "docker build -t ${repository}:${commitId} ."
                 sh "docker push ${repository}:${commitId}"
             }
