@@ -17,6 +17,7 @@ podTemplate(label: 'mypod',
             image: 'ibmcom/k8s-helm:v2.6.0',
             ttyEnabled: true,
             command: 'cat'
+            serviceAccount: 'jenkins'
         )
     ],
     volumes: [
@@ -49,7 +50,7 @@ podTemplate(label: 'mypod',
         stage ('Deploy') {
             container ('helm') {
                 sh "/helm init --client-only --skip-refresh"
-                sh "/helm upgrade --install --wait --set image.repository=${repository},image.tag=${commitId} hello hello"
+                sh "/helm upgrade --install --wait --namespace jenkins --set image.repository=${repository},image.tag=${commitId} hello hello"
             }
         }
     }
