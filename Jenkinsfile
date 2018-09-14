@@ -1,4 +1,4 @@
-podTemplate(label: 'mypod',
+podTemplate(label: 'mypod',serviceAccount: 'jenkins-gold',
     containers: [
         containerTemplate(
             name: 'golang', 
@@ -16,8 +16,7 @@ podTemplate(label: 'mypod',
             name: 'helm', 
             image: 'ibmcom/k8s-helm:v2.6.0',
             ttyEnabled: true,
-            command: 'cat',
-            serviceAccount: 'jenkins'
+            command: 'cat'
         )
     ],
     volumes: [
