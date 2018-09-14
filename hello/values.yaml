@@ -13,18 +13,28 @@ service:
   type: ClusterIP
   port: 80
 
-ingress:
-  enabled: true
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  path: /
-  hosts:
-    - hello.192.168.99.100.nip.io
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+Ingress:
+  ApiVersion: extensions/v1beta1
+  Annotations:
+    kubernetes.io/ingress.class: internal-ingress
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+    ingress.kubernetes.io/ssl-redirect: "false"
+    ingress.kubernetes.io/proxy-request-buffering: "off"
+HostName: hellohelm.k8s.elama.zone
+
+#ingress:
+#  enabled: true
+#  annotations: {}
+#    # kubernetes.io/ingress.class: nginx
+#    # kubernetes.io/tls-acme: "true"
+#  path: /
+#  hosts:
+#    - hello.192.168.99.100.nip.io
+#  tls: []
+#  #  - secretName: chart-example-tls
+#  #    hosts:
+#  #      - chart-example.local
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
