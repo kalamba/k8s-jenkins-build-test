@@ -1,4 +1,4 @@
-podTemplate(label: 'mypod',serviceAccount: 'jenkins-gold',
+podTemplate(label: 'mypod',serviceAccount: 'tiller',
     containers: [
         containerTemplate(
             name: 'golang', 
