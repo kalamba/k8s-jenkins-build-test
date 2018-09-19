@@ -49,7 +49,7 @@ podTemplate(label: 'mypod',serviceAccount: 'tiller',
         stage ('Deploy') {
             container ('helm') {
                 sh "/helm init --client-only --skip-refresh"
-                sh "/helm upgrade --install --wait --namespace team-gold --set image.repository=${repository},image.tag=${commitId} hello hello"
+                sh "/helm upgrade --tiller-namespace team-gold --install --wait --namespace team-gold --set image.repository=${repository},image.tag=${commitId} hello hello"
             }
         }
     }
