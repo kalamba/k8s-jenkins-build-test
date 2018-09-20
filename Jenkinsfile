@@ -24,7 +24,7 @@ podTemplate(label: 'mypod',serviceAccount: 'tiller',
             hostPath: '/var/run/docker.sock',
             mountPath: '/var/run/docker.sock'
         ),
-        secretVolume(mountPath: '/root/.helm', secretName: 'helm-secrets')
+        secretVolume(mountPath: '/root/.helm/', secretName: 'helm-secrets')
     ]
 ) {
     node('mypod') {
