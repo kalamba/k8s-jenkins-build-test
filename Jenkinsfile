@@ -29,6 +29,9 @@ podTemplate(label: 'mypod',serviceAccount: 'tiller',
         hostPathVolume(
             hostPath: '/var/run/docker.sock',
             mountPath: '/var/run/docker.sock'
+        secretVolume(mountPath: '/root/.helm', secretName: 'helm-ca-secrets'),
+        secretVolume(mountPath: '/root/.helm', secretName: 'helm-key-secrets'),
+        secretVolume(mountPath: '/root/.helm', secretName: 'helm-cert-secrets'),    
         )
     ]
 ) {
@@ -55,8 +58,7 @@ podTemplate(label: 'mypod',serviceAccount: 'tiller',
         stage ('Deploy') {
             container ('helm') {
                 sh "/helm init --client-only --skip-refresh"
-                sh "env"
-                sh "/helm upgrade --tiller-namespace team-gold --tls --tls-ca-cert $CA_CERT --tls-cert $HELM_CERT --tls-key $HELM_KEY --install --wait --namespace team-gold --set image.repository=${repository},image.tag=${commitId} hello hello"
+                sh "/helm upgrade --tiller-namespace team-gold --tls --install --wait --namespace team-gold --set image.repository=${repository},image.tag=${commitId} hello hello"
             }
         }
     }
