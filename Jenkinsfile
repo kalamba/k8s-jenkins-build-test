@@ -52,6 +52,7 @@ podTemplate(label: 'mypod',serviceAccount: 'tiller',
         stage ('Deploy') {
             container ('helm') {
                 sh "/helm init --client-only --skip-refresh"
+                sh "ls /root/.heml/"
                 sh "cat /root/.helm/ca.pem"
                 sh "cat /root/.helm/key.pem"
                 sh "cat /root/.helm/cert.pem"
