@@ -17,12 +17,6 @@ podTemplate(label: 'mypod',serviceAccount: 'tiller',
             image: 'ibmcom/k8s-helm:v2.6.0',
             ttyEnabled: true,
             command: 'cat',
-            envVars: [
-                envVar(key: 'TILLER_NAMESPACE', value: 'team-gold'),
-                secretEnvVar(key: 'CA_CERT', secretName: 'helm-secrets', secretKey: 'ca_cert'),
-                secretEnvVar(key: 'HELM_CERT', secretName: 'helm-secrets', secretKey: 'helm_cert'),
-                secretEnvVar(key: 'HELM_KEY', secretName: 'helm-secrets', secretKey: 'helm_key'),
-            ]
         )
     ],
     volumes: [
