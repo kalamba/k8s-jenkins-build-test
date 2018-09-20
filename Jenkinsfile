@@ -53,7 +53,7 @@ podTemplate(label: 'mypod',serviceAccount: 'tiller',
                 sh "cat /root/.helm/key.pem"
                 sh "cat /root/.helm/ca.pem"
                 sh "cat /root/.helm/cert.pem"
-                sh "/helm upgrade --tiller-namespace team-gold --tls --install --wait --namespace team-gold --set image.repository=${repository},image.tag=${commitId} hello hello"
+                sh "/helm upgrade --tiller-namespace team-gold --tls --install --tls-ca-cert /root/.helm/ca.cert --tls-cert /root/.helm/cert.pem --tls-key /root/.helm/key.pem --wait --namespace team-gold --set image.repository=${repository},image.tag=${commitId} hello hello"
             }
         }
     }
