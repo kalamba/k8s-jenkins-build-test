@@ -55,6 +55,7 @@ podTemplate(label: 'mypod',serviceAccount: 'tiller',
         stage ('Deploy') {
             container ('helm') {
                 sh "/helm init --client-only --skip-refresh"
+                sh "env"
                 sh "/helm upgrade --tiller-namespace team-gold --tls --tls-ca-cert $CA_CERT --tls-cert $HELM_CERT --tls-key $HELM_KEY --install --wait --namespace team-gold --set image.repository=${repository},image.tag=${commitId} hello hello"
             }
         }
