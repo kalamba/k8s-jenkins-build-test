@@ -17,6 +17,12 @@ podTemplate(label: 'mypod',serviceAccount: 'tiller',
             image: 'ibmcom/k8s-helm:v2.6.0',
             ttyEnabled: true,
             command: 'cat'
+            envVars: [
+                envVar(key: 'TILLER_NAMESPACE', value: 'team-gold'),
+                secretEnvVar(key: 'CA_CERT', secretName: 'helm-secrets', secretKey: 'ca_cert'),
+                secretEnvVar(key: 'HELM_CERT', secretName: 'helm-secrets', secretKey: 'helm_cert'),
+                secretEnvVar(key: 'HELM_KEY', secretName: 'helm-secrets', secretKey: 'helm_key'),
+            ]
         )
     ],
     volumes: [
@@ -49,7 +55,7 @@ podTemplate(label: 'mypod',serviceAccount: 'tiller',
         stage ('Deploy') {
             container ('helm') {
                 sh "/helm init --client-only --skip-refresh"
-                sh "/helm upgrade --tiller-namespace team-gold --install --wait --namespace team-gold --set image.repository=${repository},image.tag=${commitId} hello hello"
+                sh "/helm upgrade --tiller-namespace team-gold --tls --tls-ca-cert $CA_CERT --tls-cert $HELM_CERT --tls-key $HELM_KEY --install --wait --namespace team-gold --set image.repository=${repository},image.tag=${commitId} hello hello"
             }
         }
     }
