@@ -24,8 +24,8 @@ podTemplate(label: 'mypod',serviceAccount: 'tiller',
             hostPath: '/var/run/docker.sock',
             mountPath: '/var/run/docker.sock'
         ),
-        secretVolume(mountPath: '/root/.helm', secretName: 'helm-ca-secrets'),
         secretVolume(mountPath: '/root/.helm', secretName: 'helm-key-secrets'),
+        secretVolume(mountPath: '/root/.helm', secretName: 'helm-ca-secrets'),
         secretVolume(mountPath: '/root/.helm', secretName: 'helm-cert-secrets')
     ]
 ) {
@@ -53,8 +53,8 @@ podTemplate(label: 'mypod',serviceAccount: 'tiller',
             container ('helm') {
                 sh "/helm init --client-only --skip-refresh"
                 sh "ls /root/.heml/"
-                sh "cat /root/.helm/ca.pem"
                 sh "cat /root/.helm/key.pem"
+                sh "cat /root/.helm/ca.pem"
                 sh "cat /root/.helm/cert.pem"
                 sh "/helm upgrade --tiller-namespace team-gold --tls --install --wait --namespace team-gold --set image.repository=${repository},image.tag=${commitId} hello hello"
             }
