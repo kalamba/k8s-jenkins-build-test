@@ -50,10 +50,7 @@ podTemplate(label: 'mypod',serviceAccount: 'tiller',
         stage ('Deploy') {
             container ('helm') {
                 sh "/helm init --client-only --skip-refresh"
-                sh "cat /root/.helm/key.pem"
-                sh "cat /root/.helm/ca.pem"
-                sh "cat /root/.helm/cert.pem"
-                sh "/helm upgrade --tiller-namespace team-gold --tls --install --tls-ca-cert /root/.helm/ca.cert --tls-cert /root/.helm/cert.pem --tls-key /root/.helm/key.pem --wait --namespace team-gold --set image.repository=${repository},image.tag=${commitId} hello hello"
+                sh "/helm upgrade --tiller-namespace team-gold --namespace infosite-dev --tls --install --tls-ca-cert /root/.helm/ca.cert --tls-cert /root/.helm/cert.pem --tls-key /root/.helm/key.pem --wait --set image.repository=${repository},image.tag=${commitId} hello hello"
             }
         }
     }
