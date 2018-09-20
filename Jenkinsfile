@@ -16,7 +16,7 @@ podTemplate(label: 'mypod',serviceAccount: 'tiller',
             name: 'helm', 
             image: 'ibmcom/k8s-helm:v2.6.0',
             ttyEnabled: true,
-            command: 'cat'
+            command: 'cat',
             envVars: [
                 envVar(key: 'TILLER_NAMESPACE', value: 'team-gold'),
                 secretEnvVar(key: 'CA_CERT', secretName: 'helm-secrets', secretKey: 'ca_cert'),
