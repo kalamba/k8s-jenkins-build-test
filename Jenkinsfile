@@ -1,19 +1,19 @@
 podTemplate(label: 'mypod',serviceAccount: 'tiller',
     containers: [
         containerTemplate(
-            name: 'golang', 
+            name: 'golang',
             image: 'golang:1.10-alpine',
             ttyEnabled: true,
             command: 'cat'
         ),
         containerTemplate(
-            name: 'docker', 
+            name: 'docker',
             image: 'docker:18.02',
             ttyEnabled: true,
             command: 'cat'
         ),
         containerTemplate(
-            name: 'helm', 
+            name: 'helm',
             image: 'ibmcom/k8s-helm:v2.6.0',
             ttyEnabled: true,
             command: 'cat',
@@ -50,7 +50,7 @@ podTemplate(label: 'mypod',serviceAccount: 'tiller',
         stage ('Deploy') {
             container ('helm') {
                 sh "/helm init --client-only --skip-refresh"
-                sh "/helm upgrade --tiller-namespace team-gold --namespace infosite-dev --tls --install --tls-ca-cert /root/.helm/ca.cert --tls-cert /root/.helm/cert.pem --tls-key /root/.helm/key.pem --wait --set image.repository=${repository},image.tag=${commitId} hello hello"
+                sh "/helm upgrade --tiller-namespace team-lime --namespace agency-stage --tls --install --tls-ca-cert /root/.helm/ca.cert --tls-cert /root/.helm/cert.pem --tls-key /root/.helm/key.pem --wait --set image.repository=${repository},image.tag=${commitId} hello hello"
             }
         }
     }
